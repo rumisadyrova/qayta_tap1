@@ -1,0 +1,476 @@
+
+/* ===== ЖАЛПЫ БАПТАУЛАР ===== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f5f3fa;
+    color: #302b3a;
+    line-height: 1.6;
+}
+
+
+/* ===== ЖОҒАРҒЫ МӘЗІР ===== */
+
+body > header {
+    width: 100%;
+    min-height: 85px;
+    padding: 18px 8%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    gap: 25px;
+    background: #fff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+body > header h1 {
+    color: #7651a8;
+    font-size: 28px;
+    flex-shrink: 0;
+}
+
+body > header nav {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 25px;
+}
+
+body > header nav a {
+    text-decoration: none;
+    color: #4b4355;
+    font-weight: 600;
+    transition: 0.3s;
+    white-space: nowrap;
+}
+
+body > header nav a:hover {
+    color: #8b5fc7;
+}
+
+
+/* ===== БАСТЫ БЕТ ===== */
+
+.hero {
+    width: 100%;
+    min-height: 400px;
+    padding: 75px 20px 65px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.eyebrow {
+    margin-bottom: 15px;
+}
+
+.hero h1 {
+    max-width: 850px;
+    margin-bottom: 20px;
+    font-size: clamp(32px, 5vw, 52px);
+    line-height: 1.2;
+}
+
+.hero h1 span {
+    display: inline-block;
+}
+
+.hero-text {
+    max-width: 650px;
+    margin: 0 auto 25px;
+}
+
+
+/* ===== ІЗДЕУ ЖОЛЫ ===== */
+
+.search-form {
+    width: 100%;
+    max-width: 650px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0 auto 20px;
+}
+
+.search-form input {
+    flex: 1;
+    min-width: 0;
+    margin: 0;
+}
+
+.search-form button {
+    flex-shrink: 0;
+}
+
+
+/* ===== СҮЗГІЛЕР ===== */
+
+.filters {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 15px;
+}
+
+.filters a {
+    padding: 8px 18px;
+    border-radius: 25px;
+    text-decoration: none;
+    color: #4b4355;
+}
+
+
+/* ===== ХАБАРЛАНДЫРУЛАР БЕТІ ===== */
+
+.reports-page {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 45px 25px;
+}
+
+.reports-heading {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.reports-heading h1 {
+    margin-bottom: 10px;
+}
+
+.reports-heading p {
+    margin-bottom: 20px;
+}
+
+.reports-heading .add-button {
+    display: inline-block;
+}
+
+
+/* ===== ХАБАРЛАНДЫРУ ҚОСУ БАТЫРМАСЫ ===== */
+
+.add-button {
+    display: inline-block;
+    padding: 10px 20px;
+    text-decoration: none;
+    color: white;
+    background: #7651a8;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+.add-button:hover {
+    background: #5d3b8b;
+}
+
+
+/* ===== ЖЕКЕ КОНТЕЙНЕРЛЕР ===== */
+
+.report-group {
+    width: 100%;
+    margin-bottom: 35px;
+    padding: 30px;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
+}
+
+.group-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.group-heading h2 {
+    margin-bottom: 5px;
+}
+
+.group-heading p {
+    margin-bottom: 0;
+}
+
+.group-count {
+    white-space: nowrap;
+}
+
+
+/* ===== КАРТОЧКАЛАР ===== */
+
+.report-group .cards {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    align-items: stretch;
+    gap: 20px;
+}
+
+.report-card {
+    width: 100%;
+    min-width: 0;
+    height: 100%;
+    padding: 22px;
+    display: flex;
+    flex-direction: column;
+    background: #f5f3fa;
+    border-radius: 12px;
+    overflow-wrap: anywhere;
+}
+
+.card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.report-card h3 {
+    margin-bottom: 12px;
+}
+
+.report-card .description {
+    flex-grow: 1;
+    margin-bottom: 18px;
+}
+
+.card-details {
+    margin-top: auto;
+}
+
+.card-details p {
+    margin-bottom: 7px;
+}
+
+.empty-state {
+    grid-column: 1 / -1;
+    width: 100%;
+    padding: 30px;
+    text-align: center;
+}
+
+
+/* ===== ФОРМАЛАР ===== */
+
+.content:not(#reports) {
+    width: calc(100% - 30px);
+    max-width: 600px;
+    min-height: 0;
+    margin: 40px auto;
+    padding: 35px;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+}
+
+.content h1 {
+    color: #7651a8;
+    margin-bottom: 12px;
+}
+
+.content p {
+    margin-bottom: 18px;
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 12px;
+    margin-top: 7px;
+    border: 1px solid #d8d0e3;
+    border-radius: 8px;
+    font-size: 15px;
+    outline: none;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: #8b5fc7;
+}
+
+textarea {
+    resize: vertical;
+}
+
+
+/* ===== БАТЫРМАЛАР ===== */
+
+button {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    background: #7651a8;
+    color: white;
+}
+
+button:hover {
+    background: #5d3b8b;
+}
+
+.content a {
+    color: #7651a8;
+    text-decoration: none;
+}
+
+.content a:hover {
+    text-decoration: underline;
+}
+
+
+/* ===== FOOTER ===== */
+
+.site-footer {
+    width: 100%;
+    padding: 40px 8% 20px;
+    background: #302b3a;
+    color: white;
+}
+
+.footer-container {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1.5fr;
+    gap: 35px;
+    max-width: 1200px;
+    margin: 0 auto 30px;
+}
+
+.footer-section h2,
+.footer-section h3 {
+    margin-bottom: 15px;
+}
+
+.footer-section p {
+    margin-bottom: 10px;
+    overflow-wrap: anywhere;
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-section li {
+    margin-bottom: 9px;
+}
+
+.footer-section a {
+    color: white;
+    text-decoration: none;
+}
+
+.footer-section a:hover {
+    text-decoration: underline;
+}
+
+.footer-bottom {
+    border-top: 1px solid #ffffff55;
+    padding-top: 18px;
+    text-align: center;
+}
+
+.footer-bottom p {
+    margin-bottom: 5px;
+}
+
+
+/* ===== ТЕЛЕФОН ЖӘНЕ ПЛАНШЕТ ===== */
+
+@media (max-width: 900px) {
+
+    body > header {
+        padding: 18px 5%;
+    }
+
+    body > header nav {
+        gap: 15px;
+    }
+
+    .report-group .cards {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .footer-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    body > header {
+        flex-direction: column;
+        padding: 20px;
+    }
+
+    body > header nav {
+        justify-content: center;
+        gap: 12px;
+    }
+
+    .hero {
+        padding: 50px 18px;
+    }
+
+    .search-form {
+        flex-direction: column;
+    }
+
+    .search-form input,
+    .search-form button {
+        width: 100%;
+    }
+
+    .filters {
+        gap: 8px;
+    }
+
+    .reports-page {
+        padding: 30px 15px;
+    }
+
+    .report-group {
+        padding: 20px 15px;
+    }
+
+    .group-heading {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .report-group .cards {
+        grid-template-columns: 1fr;
+    }
+
+    .content:not(#reports) {
+        padding: 25px 18px;
+    }
+
+    .site-footer {
+        padding: 30px 20px 15px;
+    }
+
+    .footer-container {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+}
