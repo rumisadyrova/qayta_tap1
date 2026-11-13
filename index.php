@@ -9,9 +9,9 @@ $sql = "SELECT reports.*, categories.name AS category_name
         FROM reports
         JOIN categories ON reports.category_id = categories.id
         WHERE (
-            reports.title LIKE :search
-            OR reports.description LIKE :search
-            OR reports.location LIKE :search
+            reports.title LIKE :search1
+            OR reports.description LIKE :search2
+            OR reports.location LIKE :search3
         )";
 
 if (in_array($type, ["lost", "found"], true)) {
@@ -21,13 +21,19 @@ if (in_array($type, ["lost", "found"], true)) {
 $sql .= " ORDER BY reports.created_at DESC";
 
 $stmt = $pdo->prepare($sql);
-$stmt->bindValue(":search", "%" . $search . "%");
+
+$searchValue = "%" . $search . "%";
+
+$stmt->bindValue(":search1", $searchValue);
+$stmt->bindValue(":search2", $searchValue);
+$stmt->bindValue(":search3", $searchValue);
 
 if (in_array($type, ["lost", "found"], true)) {
     $stmt->bindValue(":type", $type);
 }
 
 $stmt->execute();
+
 $reports = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 // Жоғалған және табылған заттарды бөлу

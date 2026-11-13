@@ -1,5 +1,12 @@
 
 <?php
+session_start();
+
+if (!isset($_SESSION["user_id"])) {
+    header("Location: login.php");
+    exit;
+}
+
 require_once __DIR__ . "/config/db.php";
 
 $message = "";
@@ -28,7 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         );
 
         $stmt->execute([
-            1,
+            $_SESSION["user_id"],
             $category_id,
             $title,
             $description,
@@ -50,6 +57,7 @@ $categories = $pdo->query(
 
 <main class="content">
     <h1>Хабарландыру қосу</h1>
+
     <p>Жоғалған немесе табылған зат туралы ақпарат қалдырыңыз.</p>
 
     <?php if ($message !== ""): ?>
@@ -59,6 +67,7 @@ $categories = $pdo->query(
     <?php endif; ?>
 
     <form method="POST" action="create.php">
+
         <p>
             <label>Заттың атауы:</label>
             <input type="text" name="title"
@@ -87,6 +96,7 @@ $categories = $pdo->query(
                         ) ?>
                     </option>
                 <?php endforeach; ?>
+
             </select>
         </p>
 
@@ -107,6 +117,7 @@ $categories = $pdo->query(
         </p>
 
         <button type="submit">Хабарландыруды сақтау</button>
+
     </form>
 
     <p>

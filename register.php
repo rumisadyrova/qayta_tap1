@@ -1,4 +1,3 @@
-
 <?php
 require_once __DIR__ . "/config/db.php";
 
@@ -75,7 +74,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         <p>
             <label>Email:</label><br>
             <input type="email" name="email"
-                   required maxlength="255">
+                   required maxlength="150">
         </p>
 
         <p>
