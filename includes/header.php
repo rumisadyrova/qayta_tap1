@@ -1,3 +1,8 @@
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+?>
 
 <!DOCTYPE html>
 <html lang="kk">
@@ -14,7 +19,21 @@
 
     <nav>
         <a href="/qaytatap1/index.php">Басты бет</a>
-        <a href="/qaytatap1/register.php">Тіркелу</a>
-        <a href="/qaytatap1/login.php">Кіру</a>
+
+        <?php if (isset($_SESSION["user_id"])): ?>
+
+            <span>
+                Сәлем, <?= htmlspecialchars($_SESSION["user_name"], ENT_QUOTES, "UTF-8") ?>!
+            </span>
+
+            <a href="/qaytatap1/create.php">Хабарландыру қосу</a>
+            <a href="/qaytatap1/logout.php">Шығу</a>
+
+        <?php else: ?>
+
+            <a href="/qaytatap1/register.php">Тіркелу</a>
+            <a href="/qaytatap1/login.php">Кіру</a>
+
+        <?php endif; ?>
     </nav>
 </header>
