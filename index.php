@@ -1,6 +1,11 @@
-
 <?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 require_once __DIR__ . "/config/db.php";
+
+$currentUserId = $_SESSION["user_id"] ?? 0;
 
 $search = trim($_GET["search"] ?? "");
 $type = $_GET["type"] ?? "";
@@ -77,7 +82,6 @@ $foundReports = array_filter($reports, function ($report) {
     </div>
 </section>
 
-
 <!-- ХАБАРЛАНДЫРУЛАР -->
 <main class="reports-page" id="reports">
 
@@ -93,7 +97,6 @@ $foundReports = array_filter($reports, function ($report) {
             + Хабарландыру қосу
         </a>
     </div>
-
 
     <!-- ЖОҒАЛҒАН ЗАТТАР -->
     <section class="report-group lost-group">
@@ -128,51 +131,46 @@ $foundReports = array_filter($reports, function ($report) {
                             <span class="tag lost">Жоғалды</span>
 
                             <span class="category">
-                                <?= htmlspecialchars(
-                                    $report["category_name"],
-                                    ENT_QUOTES,
-                                    "UTF-8"
-                                ) ?>
+                                <?= htmlspecialchars($report["category_name"], ENT_QUOTES, "UTF-8") ?>
                             </span>
                         </div>
 
                         <h3>
-                            <?= htmlspecialchars(
-                                $report["title"],
-                                ENT_QUOTES,
-                                "UTF-8"
-                            ) ?>
+                            <?= htmlspecialchars($report["title"], ENT_QUOTES, "UTF-8") ?>
                         </h3>
 
                         <p class="description">
-                            <?= htmlspecialchars(
-                                $report["description"] ?? "",
-                                ENT_QUOTES,
-                                "UTF-8"
-                            ) ?>
+                            <?= htmlspecialchars($report["description"] ?? "", ENT_QUOTES, "UTF-8") ?>
                         </p>
 
                         <div class="card-details">
                             <p>
                                 <strong>Орны:</strong>
-                                <?= htmlspecialchars(
-                                    $report["location"] ?? "Көрсетілмеген",
-                                    ENT_QUOTES,
-                                    "UTF-8"
-                                ) ?>
+                                <?= htmlspecialchars($report["location"] ?? "Көрсетілмеген", ENT_QUOTES, "UTF-8") ?>
                             </p>
 
                             <?php if (!empty($report["event_date"])): ?>
                                 <p>
                                     <strong>Күні:</strong>
-                                    <?= htmlspecialchars(
-                                        $report["event_date"],
-                                        ENT_QUOTES,
-                                        "UTF-8"
-                                    ) ?>
+                                    <?= htmlspecialchars($report["event_date"], ENT_QUOTES, "UTF-8") ?>
                                 </p>
                             <?php endif; ?>
                         </div>
+
+                        <?php if ((int)$report["user_id"] === (int)$currentUserId): ?>
+                            <div class="card-actions">
+                                <a href="edit.php?id=<?= (int)$report["id"] ?>">
+                                    Өңдеу
+                                </a>
+
+                                <a
+                                    href="delete.php?id=<?= (int)$report["id"] ?>"
+                                    onclick="return confirm('Бұл хабарландыруды жоюға сенімдісіз бе?')"
+                                >
+                                    Жою
+                                </a>
+                            </div>
+                        <?php endif; ?>
 
                     </article>
 
@@ -182,7 +180,6 @@ $foundReports = array_filter($reports, function ($report) {
 
         </div>
     </section>
-
 
     <!-- ТАБЫЛҒАН ЗАТТАР -->
     <section class="report-group found-group">
@@ -217,51 +214,46 @@ $foundReports = array_filter($reports, function ($report) {
                             <span class="tag found">Табылды</span>
 
                             <span class="category">
-                                <?= htmlspecialchars(
-                                    $report["category_name"],
-                                    ENT_QUOTES,
-                                    "UTF-8"
-                                ) ?>
+                                <?= htmlspecialchars($report["category_name"], ENT_QUOTES, "UTF-8") ?>
                             </span>
                         </div>
 
                         <h3>
-                            <?= htmlspecialchars(
-                                $report["title"],
-                                ENT_QUOTES,
-                                "UTF-8"
-                            ) ?>
+                            <?= htmlspecialchars($report["title"], ENT_QUOTES, "UTF-8") ?>
                         </h3>
 
                         <p class="description">
-                            <?= htmlspecialchars(
-                                $report["description"] ?? "",
-                                ENT_QUOTES,
-                                "UTF-8"
-                            ) ?>
+                            <?= htmlspecialchars($report["description"] ?? "", ENT_QUOTES, "UTF-8") ?>
                         </p>
 
                         <div class="card-details">
                             <p>
                                 <strong>Орны:</strong>
-                                <?= htmlspecialchars(
-                                    $report["location"] ?? "Көрсетілмеген",
-                                    ENT_QUOTES,
-                                    "UTF-8"
-                                ) ?>
+                                <?= htmlspecialchars($report["location"] ?? "Көрсетілмеген", ENT_QUOTES, "UTF-8") ?>
                             </p>
 
                             <?php if (!empty($report["event_date"])): ?>
                                 <p>
                                     <strong>Күні:</strong>
-                                    <?= htmlspecialchars(
-                                        $report["event_date"],
-                                        ENT_QUOTES,
-                                        "UTF-8"
-                                    ) ?>
+                                    <?= htmlspecialchars($report["event_date"], ENT_QUOTES, "UTF-8") ?>
                                 </p>
                             <?php endif; ?>
                         </div>
+
+                        <?php if ((int)$report["user_id"] === (int)$currentUserId): ?>
+                            <div class="card-actions">
+                                <a href="edit.php?id=<?= (int)$report["id"] ?>">
+                                    Өңдеу
+                                </a>
+
+                                <a
+                                    href="delete.php?id=<?= (int)$report["id"] ?>"
+                                    onclick="return confirm('Бұл хабарландыруды жоюға сенімдісіз бе?')"
+                                >
+                                    Жою
+                                </a>
+                            </div>
+                        <?php endif; ?>
 
                     </article>
 
